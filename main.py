@@ -25,7 +25,8 @@ try:
     create_table_sql = """
     CREATE TABLE IF NOT EXISTS pdf_files (
         id SERIAL PRIMARY KEY,
-        filename VARCHAR(255) NOT NULL
+        filename VARCHAR(255) NOT NULL,
+        ocr VARCHAR(255) NOT NULL
     );
     """
     
@@ -54,7 +55,8 @@ def convert_pdf_to_images(pdf_path, image_folder):
         image.save(image_path)
     pdf_document.close()
 
-@app.route('/home')
+
+@app.route('/')
 def home():
     return render_template('home.html')
 
@@ -89,6 +91,49 @@ def upload_pdf():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
+
+
+# # Define your database connection parameters
+# db_params = {
+#     "dbname": "pdf_data",  # Replace with your actual database name
+#     "user": "postgres",    # Replace with your actual database username
+#     "password": "Mannat@123",  # Replace with your actual database password
+#     "host": "localhost",
+#     "port": "5432"
+# }
+
+# try:
+#     # Establish a connection to the PostgreSQL database
+#     conn = psycopg2.connect(**db_params)
+#     # Create a cursor object to execute SQL commands
+#     cursor = conn.cursor()
+    
+#     # Define the SQL statement to create the table if it doesn't exist
+#     create_table_sql = """
+#     CREATE TABLE IF NOT EXISTS pdf_files (
+#         id SERIAL PRIMARY KEY,
+#         filename VARCHAR(255) NOT NULL,
+#         ocr VARCHAR(255) NOT NULL
+#     );
+#     """
+    
+#     # Execute the SQL statement to create the table
+#     cursor.execute(create_table_sql)
+    
+#     # Commit the transaction
+#     conn.commit()
+    
+    
+    
+    
+
+
+# except psycopg2.Error as e:
+#     print(f"Error: Unable to connect to the database or create the table - {e}")
+#     exit()
 
 
 
