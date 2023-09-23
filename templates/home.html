@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(147, 147, 230);
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            height: 60px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .navbar img {
+            height: 40px;
+        }
+
+        .navbar ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .navbar li {
+            margin-left: 20px;
+        }
+
+        .navbar li a {
+            color: black;
+            text-decoration: none;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar li a:hover {
+            background-color: #f2f2f2;
+        }
+
+        /* Small screens */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 20px;
+            }
+
+            .navbar li {
+                margin-left: 0;
+                margin-bottom: 10px;
+            }
+
+            .navbar li a {
+                padding: 5px;
+            }
+        }
+
+        .container {
+            padding: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            /* Add this line */
+            margin: 4px;
+
+            justify-content: center;
+            /* Center horizontally */
+
+            align-items: center;
+
+        }
+
+        .modal-content {
+            background-color: #f4f3f5;
+
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 2px;
+            margin: 10% auto 15% auto;
+            margin: 10% auto;
+            height: 40%;
+
+        }
+
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+        button:hover {
+            opacity: 1;
+        }
+
+        /* Extra styles for the cancel button */
+        .cancelbtn {
+            padding: 14px 20px;
+            background-color: #f44336;
+        }
+
+        /* Float cancel and signup buttons and add an equal width */
+        .cancelbtn,
+        .signupbtn {
+            float: left;
+            width: 50%;
+        }
+
+        .footer {
+
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+            color: black;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer p {
+            flex: 1 1 100%;
+            margin: 0;
+        }
+
+        .footer ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex: 1 1 100%;
+            justify-content: center;
+        }
+
+        .footer ul li {
+            margin: 0 10px;
+        }
+
+        .footer .logo {
+            flex: 1 1 100%;
+            text-align: right;
+        }
+
+        .footer .logo img {
+            width: 200px;
+            height: 60px;
+        }
+
+        .alert {
+            text-align: center;
+            margin: 10px auto;
+            padding: 10px;
+            width: 80%;
+            max-width: 600px;
+            /* Limit the maximum width */
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: larger;
+        }
+
+        .text {
+            border-radius: 5px solid black;
+        }
+
+        /* Style for the popup */
+
+        /* css
+Copy code */
+        /* Style for the popup */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        /* Style for the close button */
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* Rest of your CSS styles */
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <img src="./gne_logo.png" alt="LOGO">
+        <h3>Utility App</h3>
+        <ul>
+            <li><a href="#">LOGIN</a></li>
+            <li><a href="#">SIGN IN</a></li>
+            <li><a href="#">CONTACT US</a></li>
+            <li><a href="#">EXPLORE</a></li>
+            <li><a href="#">HOME</a></li>
+        </ul>
+    </div>
+
+    <!-- {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert">
+    {{ message }}
+  </div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+  <div id="signup-success-popup" class="popup">
+    <div class="popup-content">
+      <span class="close">&times;</span>
+      <h3>Congratulations! You have successfully signed up!</h3>
+    </div>
+  </div> -->
+
+    <form class="modal-content" action="{{ url_for('signup') }}" method="POST">
+        <h1>Upload Your Answer Sheet</h1>
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            <input type="file" name="pdf" accept=".pdf" required>
+            <br><br>
+            <button type="submit">Upload PDF</button>
+        </form>
+    </form>
+    <div
+        style="margin-top:0px;padding:0px;font-size:8vw; vertical-align:text-top;text-align:center;text-emphasis-color: rgb(237, 164, 176);text-shadow:3px 3px #f2f2f2;font-weight: bold;">
+        BETTER RESULTS!!!</div>
+    <div></div>
+    <footer class="footer">
+        <p
+            style="font-size: 30px; font-weight: bold;  text-align: center; text-shadow: #f2f2f2; text-emphasis-color: rgb(237, 164, 176);">
+            DISCLAIMER: THE RESULTS ARE COMPLETELY BASED ON RESEARCHES!</p>
+        <br><br><br><br>
+        <ul>
+            <li><a href="#">LOGIN</a></li>
+            <li><a href="#">SIGN IN</a></li>
+            <li><a href="#">CONTACT US</a></li>
+            <li><a href="#">EXPLORE</a></li>
+            <li><a href="#">HOME</a></li>
+        </ul>
+        <div class="logo">
+            <img src="./gne_logo.png" alt="Logo">
+        </div>
+
+    </footer>
+    </div>
+</body>
+
+</html>
